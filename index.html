@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/jpg" href="assets/images/echiang-brand.png" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+  <title>Marvel Studios Trivia</title>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="image-header">
+      <img src="assets/images/nasdaq/nasdaq_logo.png" id="nasdaq-logo" width=90%;>
+    </div>
+
+    <div class="card bg-light mb-12" style="max-width: 64rem;">
+      <div class="card-header" id="title">Stock Value Game</div>
+      <div id="instructions">Instructions:</div>
+      <ul id="instructions-list">
+        <li>You will be given a random dollar value at the start of the game.</li>
+        <li>There are 5 stocks below. By clicking on a stock, you will add a specific dollar amount to your total
+          portfolio.</li>
+        <li>You win the game by matching your total portfolio to the random value, you lose the game if your total
+          portfolio value goes above the random number.</li>
+        <li>The value of each stock is hidden from you until you click on it.</li>
+        <li>Each time when the game starts, the game will change the value of each stock.</li>
+      </ul>
+    </div>
+
+    <br />
+
+    <div class="card bg-light mb-12" style="max-width: 64rem;">
+      <div class="card-header" id="subtitle">Portfolio of NASDAQ (FAANG) Stocks</div>
+      <div id="win-counter">Wins: 0</div>
+      <div id="loss-counter">Losses: 0</div>
+      <div id="last-stock-value">Last clicked stock value: </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-lg-6" id="logorow">
+          </div>
+          <div class="col-sm-3">
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Value to match: $ million</h5>
+              <p class="card-text" id="number-to-guess"></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Portfolio value: $ million</h5>
+              <p class="card-text" id="portfolio-value"></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      Copyright &circledR;
+      <a href="https://echiang73.github.io/"> Eddie Chiang </a>2019
+    </footer>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</body>
+
+</html>
