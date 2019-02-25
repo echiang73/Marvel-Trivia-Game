@@ -1,3 +1,4 @@
+// Global variables
 var triviaQuestions = [{
 	question: "Who does Bruce Banner become",
 	answerList: ["Spider-Man", "Iron Man", "Hulk", "Captain America"],
@@ -101,3 +102,32 @@ var triviaQuestions = [{
 	answer: 3
 }];
 
+// var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13','question14','question15'];
+var currentQuestion;
+var correctAnswer;
+var incorrectAnswer;
+var unanswered;
+var seconds;
+var time;
+var answered;
+var userSelect;
+var messages = {
+	correct: "Corect: I could do this all day! - Captain America",
+	incorrect: "Incorrect: I'm sorry, did I step on your moment? - Black Widow",
+	outOfTime: "You are out of time!",
+	finishedQuote: {
+		"Oh oh: All we can do is our best, and sometimes the best we can do is to start over - Agent Carter",
+		"Not too bad: No man can win every battle, but no man should fall without a struggle - Peter Parker",
+		"Awesome: Heroes are made by the path they choose, not the powers they are graced with - Iron man",
+	}
+}
+
+$("#startBtn").on("click", function(){
+	$(this).hide();
+	newGame();
+});
+
+$("#startOverBtn").on("click", function(){
+	$(this).hide();
+	newGame();
+});
