@@ -1,11 +1,11 @@
 // Global variables
 var triviaQuestions = [{
-	question: "Who does Bruce Banner become",
+	question: "Who does Bruce Banner become?",
 	answerList: ["Spider-Man", "Iron Man", "Hulk", "Captain America"],
 	answer: 2
-	answerjpg: "url: ../images/hulk.jpg"; // is this correct?
+	// answerjpg: "url: ../images/hulk.jpg"; // is this correct?
 },{
-	question: "Who is Peter Parker",
+	question: "Who is Peter Parker?",
 	answerList: ["Captain America", "Hulk", "Spider-Man", "Ironman"],
 	answer: 2
 },{
@@ -103,31 +103,68 @@ var triviaQuestions = [{
 }];
 
 // var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13','question14','question15'];
-var currentQuestion;
-var correctAnswer;
-var incorrectAnswer;
-var unanswered;
+var questionNum;
+var correctCounter;
+var incorrectCounter;
+var unansweredCounter;
 var seconds;
 var time;
 var answered;
 var userSelect;
 var messages = {
-	correct: "Corect: I could do this all day! - Captain America",
+	correct: "Correct: I could do this all day! - Captain America",
 	incorrect: "Incorrect: I'm sorry, did I step on your moment? - Black Widow",
 	outOfTime: "You are out of time!",
-	finishedQuote: {
-		"Oh oh: All we can do is our best, and sometimes the best we can do is to start over - Agent Carter",
-		"Not too bad: No man can win every battle, but no man should fall without a struggle - Peter Parker",
-		"Awesome: Heroes are made by the path they choose, not the powers they are graced with - Iron man",
+}
+var finishedQuote = [
+	"Oh oh: All we can do is our best, and sometimes the best we can do is to start over - Agent Carter",
+	"Not too bad: No man can win every battle, but no man should fall without a struggle - Peter Parker",
+	"Awesome: Heroes are made by the path they choose, not the powers they are graced with - Iron man",
+]
+
+// Functions
+
+function initiateGame(){
+	// Clear scoreboard display and values and set answered to false
+	$("#finished-quote").empty();
+	$("#correct-count").empty();
+	$("#incorrect-count").empty();
+	$("#unanswered-count").empty();
+	questionNum = 1;
+	correctCounter = 0;
+	incorrectCounter = 0;
+	unansweredCounter = 0;
+	answered = false;
+	startGame();
+}
+
+function startGame(){
+	// Clear main-display from previous game and set answered to true since it can be unanswered/correct/incorrect
+	$("#message-quote").empty();
+	$("#corrected-answer").empty();
+	$("#answer-png").empty();
+	answered = true;
+	// Display question and answer list
+	$("#question-number").html("Question #" + (questionNum) + "/" + triviaQuestions.length);
+	$("#current-question").html(triviaQuestions[questionNum].question);
+	for(var i=0; i<4; i++){
+		var answerChoices = $("<div>");
+		answerChoices.text(triviaQuestions[questionNum].answerList[i]);
+		$("answer-list").append(answerChoices);
+		console.log(questionNum);
 	}
 }
 
-$("#startBtn").on("click", function(){
+
+
+// Main process
+
+$("#startBtn").click(function(){
 	$(this).hide();
-	newGame();
+	initiateGame();
 });
 
-$("#startOverBtn").on("click", function(){
+$("#startOverBtn").click(function(){
 	$(this).hide();
-	newGame();
+	initiateGame();
 });

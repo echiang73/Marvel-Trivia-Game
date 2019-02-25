@@ -26,12 +26,24 @@
 
     <div class="container">
         <button class='btn btn-dark' id="startBtn">Start</button>
-
+        <!--Timer-->
         <div id="time-remaining">Time remaining: </div>
-        <div id="questionNumber">Question: 1 of 25</div>
-        <div id="question">Question: </div>
-        <div id="answerChoices">Answers 1-4</div>
-
+        <div class="main-display">
+            <!--Question Page-->
+            <div id="question-number">Question: 1 of 25</div>
+            <div id="current-question">Question: </div>
+            <div id="answer-choices">Answers 1-4</div>
+            <!--Answer Page-->
+            <div id="message-quote"></div>
+            <div id="correct-answer"></div>
+            <div id="answer-png"></div>
+            <!--Scoreboard Page-->
+            <div id="finished-quote"></div>
+            <div id="correct-count"></div>
+            <div id="incorrect-count"></div>
+            <div id="unanswered-count"></div>
+            <div id="start-over-btn"></div>
+        </div>
 
         <!-- <div class="mx-auto card bg-light mb-12" style="max-width: 48rem;">
             <div id="time-remaining">Time remaining: </div>
@@ -62,25 +74,19 @@
         </div> -->
 
         <footer class="footer">
-            Copyright &circledR;
-            <a href="https://echiang73.github.io/"> Eddie Chiang </a>2019
+            <a> Eddie Chiang - Copyright &circledR; 2019</a><br />
+            <a class=link href="https://www.linkedin.com/in/eddie-t-chiang"><i class="fab fa-linkedin fa-2x"
+                    style="color:#f8ba4b"></i></a>
+            <a class=link href="https://github.com/echiang73"><i class="fab fa-github fa-2x"
+                    style="color:#f8ba4b"></i></a>
+            <a class=link href="https://angel.co/eddie-chiang"><i class="fab fa-angellist fa-2x"
+                    style="color:#f8ba4b"></i></a>
         </footer>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <script type="text/javascript" src="assets/javascript/game.js"></script>
+        <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>
 
 </html>
-
-<!-- <div id="instructions">Instructions:</div>
-<ul id="instructions-list">
-    <li>You will be given a random dollar value at the start of the game.</li>
-    <li>There are 5 stocks below. By clicking on a stock, you will add a specific dollar amount to your total
-        portfolio.</li>
-    <li>You win the game by matching your total portfolio to the random value, you lose the game if your total
-        portfolio value goes above the random number.</li>
-    <li>The value of each stock is hidden from you until you click on it.</li>
-    <li>Each time when the game starts, the game will change the value of each stock.</li>
-</ul> -->

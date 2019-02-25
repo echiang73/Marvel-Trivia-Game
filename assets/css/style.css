@@ -23,11 +23,12 @@ body{
 #logo-heading{
     text-align: center;
     background-color: black;
+    padding: 10px;
 }
 #title-heading{
     text-align: center;
     /* background-color: black; */
-    color: white;
+    color: red;
 }
 .testing {
     text-align: center;
@@ -41,7 +42,7 @@ body{
 	margin-top: 100px;
 }
 .btn-dark:hover, .reset:hover{
-	background-color: blue;
+	background-color: green;
 }
 
 .container{
@@ -59,10 +60,10 @@ body{
 footer {
     clear: both;
     overflow: auto;
-    background: #666666;
-    color: white;
+    background:black;
+    color: #f8ba4b;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-bottom: 5px;
     border-top: 4px solid red;
     /* to make a sticky footer */
@@ -72,3 +73,7 @@ footer {
     width: 100%;
     z-index: 5;
     }
+
+a {
+    color: white;
+}
