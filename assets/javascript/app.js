@@ -157,10 +157,10 @@ function newQuestion() {
 		console.log(questionNum);
 	}
 	runCountdown();
-	$(".newDivChoice").click(function () {
+	$(".newDivChoice").click(function(){
 		userSelect = $(this).data("index");
-		// clearInterval(intervalId);
-		// answerPage();
+		clearInterval(intervalId);
+		answerPage();
 	});
 }
 
@@ -184,28 +184,30 @@ function decrement(){
 
 function answerPage(){
 	// Clear display first
-	$("#question-number").empty();
 	$("#current-question").empty();
 	$(".newDivChoice").empty();
 	// Retrieve correct triviaQuestions.answer index and display answer
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
-	$("#correct-answer").html("The correct answer is: " + correctAnswerText);
+	
 	// $("#correct-answer").html("The correct answer is: " + correctAnswerText);
 
 	// Increase correct/incorrect/or unanswered count and display message-quote as appropriate
 	if(answered = false){
 		unansweredCounter++;
 		$("#message-quote").html(messages.outOfTime);
+		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
 		// answered = true;
 	}
 	else if(userSelect === correctAnswerIndex){
 		correctCounter++;
-		$("#message-quote").html(messages.correct);
+		$("#correct-answer").html(messages.correct);
+		$("#message-quote").html(correctAnswerText + "!");
 	}
 	else{
 		incorrectCounter++;
 		$("#message-quote").html(messages.incorrect);
+		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
 	}
 	// Pause for the person to read the answer and determine if next new question or game over
 	if(questionNum === (triviaQuestions.length-1)){
