@@ -130,7 +130,7 @@ function initiateGame() {
 	$("#correct-count").empty();
 	$("#incorrect-count").empty();
 	$("#unanswered-count").empty();
-	questionNum = 1; // Can make it randomly pick 10 out of 25 questions!
+	questionNum = 24; // Can make it randomly pick 10 out of 25 questions!
 	correctCounter = 0;
 	incorrectCounter = 0;
 	unansweredCounter = 0;
@@ -201,8 +201,8 @@ function answerPage(){
 	}
 	else if(userSelect === correctAnswerIndex){
 		correctCounter++;
-		$("#correct-answer").html(messages.correct);
-		$("#message-quote").html(correctAnswerText + "!");
+		$("#correct-answer").html(messages.correct);  // switched the target tag for better readibility
+		$("#message-quote").html(correctAnswerText + "!"); // switched the target tag for better readibility
 	}
 	else{
 		incorrectCounter++;
@@ -219,17 +219,32 @@ function answerPage(){
 	}
 }
 
+function scoreboard(){
+	$("#time-remaining").empty();
+	$("#message-quote").empty();
+	$("#correct-answer").empty();
+	$("#answer-png").empty();
+
+	$("#finished-quote").html(finishedQuote); // need to tailor this
+	$("#correct-count").html("Correct Answers: " + correctCounter);
+	$("#incorrect-count").html("Incorrect Answers: " + incorrectCounter);
+	$("#unanswered-count").html("Unanswered: " + unansweredCounter);
+	$("#start-over-btn").show();
+
+}
+
 
 
 // Main process
+$("#start-over-btn").hide();
 
-$("#startBtn").click(function () {
+$("#start-btn").click(function() {
 	$(this).hide();
 	$("#ironmanLogo").hide();
 	initiateGame();
 });
 
-$("#startOverBtn").click(function () {
+$("#start-over-btn").click(function() {
 	$(this).hide();
 	initiateGame();
 });
