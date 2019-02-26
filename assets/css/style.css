@@ -76,6 +76,7 @@ footer {
  /* Medium devices (landscape tablets, 768px and up) */
  @media only screen and (max-width: 768px) {
     body{
+        background-image: url('../images/marvelbackgroundmobile.jpg');
         background-position: bottom;
         background-color: red;
         font-size: 20px;
