@@ -3,12 +3,13 @@
     src: url(../fonts/simplicity.ttf);
 }
 body{
-    background-image: url('../images/marvelbackgroundfullalt.jpg');
-    background-position: bottom;
+    background-image: url('../images/marvelbackgroundfullalt3.jpg');
+    background-position: top;
     /* position: fixed;
     left: 0;
     bottom: 0; */
     /* width: 100%; */
+    /* background-color: red; */
     background-color: #f8ba4b;
     background-repeat: no-repeat;
     /* background-size: 1024px; */
@@ -28,21 +29,27 @@ body{
 #title-heading{
     text-align: center;
     /* background-color: black; */
-    color: red;
+    color:white;
 }
 .testing {
     text-align: center;
 }
 
-.btn-dark,.reset{
-	background-color: red;
-	color: white;
+.btn-success,.reset{
+	background-color: yellow;
+	color:black;
 	font-size: 30px;
 	padding: 0px 10px 0px 10px;
-	margin-top: 100px;
+	margin-top: 25px;
 }
 .btn-dark:hover, .reset:hover{
 	background-color: green;
+}
+
+#ironmanLogo{
+    width: 75%;
+    margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 .container{
