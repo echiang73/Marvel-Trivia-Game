@@ -102,4 +102,7 @@ footer {
         color: red;
         font-size: 28px;
     }
+    #answer-gif{
+        width: 400px;
+    }
   } 
