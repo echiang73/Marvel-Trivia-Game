@@ -104,6 +104,7 @@ var triviaQuestions = [{
 
 // var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13','question14','question15'];
 var questionNum;
+var questionCounter;
 var correctCounter;
 var incorrectCounter;
 var unansweredCounter;
@@ -112,14 +113,14 @@ var intervalId;
 var answered;
 var userSelect;
 var messages = {
-	correct: 'Correct: "I could do this all day!" - Captain America',
-	incorrect: 'Incorrect: "Sorry, did I step on your moment?" - Black Widow',
+	correct: 'Correct: "I could do this all day!"',
+	incorrect: 'Incorrect: "Sorry, did I step on your moment?"',
 	outOfTime: 'You are out of time!',
 }
 var finishedQuote = [
-	"Oh oh: All we can do is our best, and sometimes the best we can do is to start over - Agent Carter",
-	"Not too bad: No man can win every battle, but no man should fall without a struggle - Peter Parker",
-	"Awesome: Heroes are made by the path they choose, not the powers they are graced with - Iron man",
+	'Oh oh: "All we can do is our best, and sometimes the best we can do is to start over" - Agent Carter',
+	'Not too bad: "No man can win every battle, but no man should fall without a struggle" - Peter Parker',
+	'Awesome: "Heroes are made by the path they choose, not the powers they are graced with" - Iron man',
 ]
 
 // Functions
@@ -130,7 +131,7 @@ function initiateGame() {
 	$("#correct-count").empty();
 	$("#incorrect-count").empty();
 	$("#unanswered-count").empty();
-	questionNum = 24; // Can make it randomly pick 10 out of 25 questions!
+	questionCounter = 0; 
 	correctCounter = 0;
 	incorrectCounter = 0;
 	unansweredCounter = 0;
@@ -144,8 +145,14 @@ function newQuestion() {
 	$("#correct-answer").empty();
 	$("#answer-png").empty();
 	answered = true;
+	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
+	questionNum = Math.floor(Math.random() * triviaQuestions.length);
+	questionCounter++;
+	// console.log(questionNum);
+	// console.log(questionCounter);
+
 	// Display question and answer list
-	$("#question-number").html("Question #" + (questionNum) + " out of " + triviaQuestions.length);
+	$("#question-number").html("Question #" + (questionCounter) + " of 10");
 	$("#current-question").html(triviaQuestions[questionNum].question);
 	for (var i = 0; i < 4; i++) {
 		var answerChoices = $("<div>");
@@ -157,75 +164,84 @@ function newQuestion() {
 		console.log(questionNum);
 	}
 	runCountdown();
-	$(".newDivChoice").click(function(){
+	$(".newDivChoice").click(function () {
 		userSelect = $(this).data("index");
 		clearInterval(intervalId);
 		answerPage();
 	});
 }
 
-function runCountdown(){
-	secondsLeft = 15;
+function runCountdown() {
+	secondsLeft = 1; // change to 15
 	$("#time-remaining").html("Time Remaining: " + secondsLeft);
 	clearInterval(intervalId);
 	intervalId = setInterval(decrement, 1000);
 	answered = true;
 }
 
-function decrement(){
+function decrement() {
 	secondsLeft--;
 	$("#time-remaining").html("Time Remaining: " + secondsLeft);
-	if(secondsLeft === 0){
+	if (secondsLeft === 0) {
 		clearInterval(intervalId);
 		answered = false;
 		answerPage();
 	}
 }
 
-function answerPage(){
+function answerPage() {
 	// Clear display first
 	$("#current-question").empty();
 	$(".newDivChoice").empty();
 	// Retrieve correct triviaQuestions.answer index and display answer
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
-	
+
 	// $("#correct-answer").html("The correct answer is: " + correctAnswerText);
 
 	// Increase correct/incorrect/or unanswered count and display message-quote as appropriate
-	if(answered = false){
+	if (answered === false) {
 		unansweredCounter++;
 		$("#message-quote").html(messages.outOfTime);
 		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
-		// answered = true;
+		answered = true;
 	}
-	else if(userSelect === correctAnswerIndex){
+	else if (userSelect === correctAnswerIndex) {
 		correctCounter++;
 		$("#correct-answer").html(messages.correct);  // switched the target tag for better readibility
 		$("#message-quote").html(correctAnswerText + "!"); // switched the target tag for better readibility
 	}
-	else{
+	else {
 		incorrectCounter++;
 		$("#message-quote").html(messages.incorrect);
 		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
 	}
 	// Pause for the person to read the answer and determine if next new question or game over
-	if(questionNum === (triviaQuestions.length-1)){
-		setTimeout(scoreboard, 1000 * 5);
+	if (questionCounter === 10) {
+		// if(questionNum === (triviaQuestions.length-1)){
+		setTimeout(scoreboard, 1000 * 1); // change to 5
 	}
-	else{
+	else {
 		questionNum++;
-		setTimeout(newQuestion, 1000 * 5);
+		setTimeout(newQuestion, 1000 * 1); // change to 5
 	}
 }
 
-function scoreboard(){
+function scoreboard() {
 	$("#time-remaining").empty();
+	$("#question-number").empty();
 	$("#message-quote").empty();
 	$("#correct-answer").empty();
 	$("#answer-png").empty();
-
-	$("#finished-quote").html(finishedQuote); // need to tailor this
+	if (correctCounter < 3) {
+		$("#finished-quote").html(finishedQuote[0]);
+	}
+	else if (correctCounter >= 3 && correctCounter <= 6) {
+		$("#finished-quote").html(finishedQuote[1]);
+	}
+	else {
+		$("#finished-quote").html(finishedQuote[2]);
+	}
 	$("#correct-count").html("Correct Answers: " + correctCounter);
 	$("#incorrect-count").html("Incorrect Answers: " + incorrectCounter);
 	$("#unanswered-count").html("Unanswered: " + unansweredCounter);
@@ -238,13 +254,13 @@ function scoreboard(){
 // Main process
 $("#start-over-btn").hide();
 
-$("#start-btn").click(function() {
+$("#start-btn").click(function () {
 	$(this).hide();
 	$("#ironmanLogo").hide();
 	initiateGame();
 });
 
-$("#start-over-btn").click(function() {
+$("#start-over-btn").click(function () {
 	$(this).hide();
 	initiateGame();
 });
