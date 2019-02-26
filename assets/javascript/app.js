@@ -28,7 +28,7 @@ var triviaQuestions = [{
 	question: "What is the name of the Marvel comic legend who has made an appearance in all the films of the Marvel Cinematic Universe?",
 	answerList: ["Jack Kirby", "Stan Lee", "Walter Norris", "Steve Rogers"],
 	answer: 1,
-	answerGiff: "stanlee.gif",
+	answerGiff: "stanlee.gif", // something is wrong with this file!
 }, {
 	question: "Thor’s hammer, Mjolnir, is made of metal from the heart of a dying what?",
 	answerList: ["Asteroid", "Comet", "Star", "Black Hole"],
@@ -126,7 +126,6 @@ var triviaQuestions = [{
 	answerGif: "drstrangesurgeon.gif",
 }];
 
-// var gifArray = ['question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'question11', 'question12', 'question13','question14','question15'];
 var questionNum;
 var questionCounter;
 var correctCounter;
@@ -137,15 +136,23 @@ var intervalId;
 var answered;
 var userSelect;
 var messages = {
-	correct: 'Correct: "I could do this all day!"',
-	incorrect: 'Incorrect: "Sorry, did I step on your moment?"',
-	outOfTime: 'You are out of time!',
-}
+	correct: "Super, that's correct!",
+	incorrect: "Sorry, that's not correct!",
+	outOfTime: "You are out of time!",
+};
 var finishedQuote = [
 	'Oh oh: "All we can do is our best, and sometimes the best we can do is to start over" - Agent Carter',
 	'Not too bad: "No man can win every battle, but no man should fall without a struggle" - Peter Parker',
 	'Awesome: "Heroes are made by the path they choose, not the powers they are graced with" - Iron man',
-]
+];
+// Variable for timeouts
+var tenSeconds;
+var sevenSeconds;
+var fourSeconds;
+var threeSeconds;
+var twoSeconds;
+var oneSeconds;
+var zeroSeconds;
 
 // Functions
 
@@ -179,28 +186,41 @@ function newQuestion() {
 	$("#question-number").html("Question #" + (questionCounter) + " of 10");
 	$("#current-question").html(triviaQuestions[questionNum].question);
 	for (var i = 0; i < 4; i++) {
-		var answerChoices = $("<div>");
-		answerChoices.text(triviaQuestions[questionNum].answerList[i]);
-		$("answer-list").append(answerChoices);
-		answerChoices.attr({ "data-index": i });
-		answerChoices.addClass("newDivChoice");
-		$(".answer-choices").append(answerChoices);
+		var answerChoice = $("<div>");
+		answerChoice.text(triviaQuestions[questionNum].answerList[i]);
+		$("answer-list").append(answerChoice);
+		answerChoice.attr({ "data-index": i });
+		answerChoice.addClass("newDivChoice");
+		$(".answer-choice").append(answerChoice);
 		console.log(questionNum);
 	}
 	runCountdown();
 	$(".newDivChoice").click(function () {
 		userSelect = $(this).data("index");
 		clearInterval(intervalId);
+		clearTimeout(tenSeconds);
+		clearTimeout(fourSeconds);
+		clearTimeout(threeSeconds);
+		clearTimeout(twoSeconds);
+		clearTimeout(oneSeconds);
+		clearTimeout(zeroSeconds);
 		answerPage();
 	});
 }
 
 function runCountdown() {
-	secondsLeft = 1; // change to 15
+	secondsLeft = 15; // change to 15
 	$("#time-remaining").html("Time Remaining: " + secondsLeft);
+	$("#time-remaining").css("background-color","green");
 	clearInterval(intervalId);
 	intervalId = setInterval(decrement, 1000);
 	answered = true;
+	setTimeout(tenSeconds, 1000 * 8); // turn yellow
+	setTimeout(fourSeconds, 1000 * 11) // blinking red
+	setTimeout(threeSeconds, 1000 * 12) // blinking black
+	setTimeout(twoSeconds, 1000 * 13) // blinking red
+	setTimeout(oneSeconds, 1000 * 14) // blinking black
+	setTimeout(zeroSeconds, 1000 * 15) // blinking red
 }
 
 function decrement() {
@@ -213,10 +233,36 @@ function decrement() {
 	}
 }
 
+// Timeout for the countdown clock with visual color display
+function tenSeconds(){
+	$("#time-remaining").css("background-color","yellow");
+}
+function fourSeconds(){
+	$("#time-remaining").css("background-color","red");
+	$("#time-remaining").css("color","yellow");
+}
+function threeSeconds(){
+	$("#time-remaining").css("background-color","black");
+	$("#time-remaining").css("color","yellow");
+}
+function twoSeconds(){
+	$("#time-remaining").css("background-color","red");
+	$("#time-remaining").css("color","yellow");
+}
+function oneSeconds(){
+	$("#time-remaining").css("background-color","black");
+	$("#time-remaining").css("color","yellow");
+}
+function zeroSeconds(){
+	$("#time-remaining").css("background-color","red");
+	$("#time-remaining").css("color","yellow");
+}
+
 function answerPage() {
 	// Clear display first
 	$("#current-question").empty();
 	$(".newDivChoice").empty();
+	$("#time-remaining").empty();
 	// Retrieve correct triviaQuestions.answer index and display answer and gif
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
@@ -242,11 +288,11 @@ function answerPage() {
 	// Pause for the person to read the answer and determine if next new question or game over
 	if (questionCounter === 10) {
 		// if(questionNum === (triviaQuestions.length-1)){
-		setTimeout(scoreboard, 1000 * 1); // change to 5
+		setTimeout(scoreboard, 1000 * 6);
 	}
 	else {
 		questionNum++;
-		setTimeout(newQuestion, 1000 * 1); // change to 5
+		setTimeout(newQuestion, 1000 * 6);
 	}
 }
 
@@ -279,6 +325,7 @@ $("#start-over-btn").hide();
 
 $("#start-btn").click(function () {
 	$(this).hide();
+	$("#title-heading").hide();
 	$("#ironmanLogo").hide();
 	initiateGame();
 });
