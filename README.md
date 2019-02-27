@@ -20,7 +20,7 @@ https://echiang73.github.io/TriviaGame/
 * JavaScript
 * jQuery
 * Responsive Web Design Media Query
-* Use of timing events with setTimeout and setInterval, video, sound
+* Use of timing events with setTimeout and setInterval, video, sound, pseudocodes
 
 Here's are the previews of the game:
 
