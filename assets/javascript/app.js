@@ -190,7 +190,15 @@ function newQuestion() {
 	$("#answer-gif").empty();
 	answered = true;
 	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
+	var questionHistory = [];
 	questionNum = Math.floor(Math.random() * triviaQuestions.length);
+	if(!questionNum === questionHistory){
+		questionHistory.push(questionNum);
+	}
+	else{
+		questionNum = Math.floor(Math.random() * triviaQuestions.length);
+	}
+
 	questionCounter++;
 
 	// Display question and answer list

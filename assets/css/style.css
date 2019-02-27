@@ -71,7 +71,7 @@ video{
     color: green;
 }
 #incorrect-count{
-    color: maroon;
+    color: darkred;
 }
 #answer-gif{
     /* width:10%; */
