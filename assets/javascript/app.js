@@ -265,10 +265,16 @@ function answerPage() {
 	$("#current-question").empty();
 	$(".newDivChoice").empty();
 	$("#time-remaining").empty();
+	clearTimeout(tenSeconds);
+	clearTimeout(fourSeconds);
+	clearTimeout(threeSeconds);
+	clearTimeout(twoSeconds);
+	clearTimeout(oneSeconds);
+	clearTimeout(zeroSeconds);
 	// Retrieve correct triviaQuestions.answer index and display answer and gif
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
-	$("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width = '400px'>");
+	$("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width = '350px'>");
 
 	// Increase correct/incorrect/or unanswered count and display message-quote as appropriate
 	if (answered === false) {
