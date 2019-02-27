@@ -43,7 +43,7 @@ body{
     float: none;
 }
 #time-remaining{
-    width: 200px;
+    width: 275px;
     margin: 0 auto;
 }
 #question-number,
@@ -54,6 +54,8 @@ body{
 	background-color: yellow;
     color: red;
     font-size: 32px;
+    width: 275px;
+    margin: 0 auto;
 }
 #finished-quote{
     color: blue;
@@ -64,6 +66,13 @@ body{
 #incorrect-count{
     color: red;
 }
+/* #answer-gif{
+    width:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    } */
 
 footer {
     font-family:  Arial, Helvetica, sans-serif;
@@ -85,11 +94,13 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
     }
+/* #eddie, #copyright{
+    margin: 0px 10px 0px 10px;
+} */
 .footer > a{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
  /* Medium devices (landscape tablets, 768px and up) */
