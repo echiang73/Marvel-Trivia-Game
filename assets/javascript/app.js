@@ -28,7 +28,7 @@ var triviaQuestions = [{
 	question: "What is the name of the Marvel comic legend who has made an appearance in all the films of the Marvel Cinematic Universe?",
 	answerList: ["Jack Kirby", "Stan Lee", "Walter Norris", "Steve Rogers"],
 	answer: 1,
-	answerGiff: "stanlee.gif", // something is wrong with this, says undefined!!!
+	answerGif: "stanlee.gif",
 }, {
 	question: "Thor’s hammer, Mjolnir, is made of metal from the heart of a dying what?",
 	answerList: ["Asteroid", "Comet", "Star", "Black Hole"],
@@ -213,6 +213,7 @@ function runCountdown() {
 	secondsLeft = 15;
 	$("#time-remaining").html("Time Remaining: " + secondsLeft);
 	$("#time-remaining").css("background-color","green");
+	$("#time-remaining").css("color","black");
 	clearInterval(intervalId);
 	intervalId = setInterval(decrement, 1000);
 	answered = true;
