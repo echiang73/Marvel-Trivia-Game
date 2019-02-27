@@ -274,7 +274,8 @@ function answerPage() {
 	// Retrieve correct triviaQuestions.answer index and display answer and gif
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
-	$("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width = '20%'>");
+	$("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width = '500em'>");
+	// $("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width = '50%'>");
 
 	// Increase correct/incorrect/or unanswered count and display message-quote as appropriate
 	if (answered === false) {
@@ -296,11 +297,11 @@ function answerPage() {
 	// Pause for the person to read the answer and determine if next new question or game over
 	if (questionCounter === 10) {
 		// if(questionNum === (triviaQuestions.length-1)){
-		setTimeout(scoreboard, 1000 * 6);
+		setTimeout(scoreboard, 1000 * 5);
 	}
 	else {
 		questionNum++;
-		setTimeout(newQuestion, 1000 * 6);
+		setTimeout(newQuestion, 1000 * 5);
 	}
 }
 
