@@ -19,7 +19,7 @@ https://echiang73.github.io/TriviaGame/
 * Responsive Web Design Media Query
 * Use of timing events with setTimeout and setInterval, video, sound, pseudocodes
 
-### Here's are the previews of the game:
+### Here are the previews of the game:
 
 ![](assets/images/gamepreview.gif "gif")
 
