@@ -127,6 +127,8 @@ var triviaQuestions = [{
 }];
 
 var questionNum;
+var questionHistory = [];
+var questionUnique
 var questionCounter;
 var correctCounter;
 var incorrectCounter;
@@ -163,7 +165,7 @@ var audioMusic = new Audio("assets/sound/MusicLoops.mp3");
 
 // Functions
 
-function videoplayed(){
+function videoplayed() {
 	$("video").remove();
 	$("#start-btn").show();
 	$("#ironmanLogo").show();
@@ -175,7 +177,7 @@ function initiateGame() {
 	$("#correct-count").empty();
 	$("#incorrect-count").empty();
 	$("#unanswered-count").empty();
-	questionCounter = 0; 
+	questionCounter = 0;
 	correctCounter = 0;
 	incorrectCounter = 0;
 	unansweredCounter = 0;
@@ -190,16 +192,24 @@ function newQuestion() {
 	$("#answer-gif").empty();
 	answered = true;
 	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
-	var questionHistory = [];
+	questionUnique = true;
 	questionNum = Math.floor(Math.random() * triviaQuestions.length);
-	if(!questionNum === questionHistory){
-		questionHistory.push(questionNum);
-	}
-	else{
-		questionNum = Math.floor(Math.random() * triviaQuestions.length);
-	}
-
+	console.log(questionNum);
+	
+	// for (var i = 0; i < questionHistory.length; i++) {
+	// 	if (questionNum == questionHistory[i]) {
+	// 		newQuestion();
+	// 		questionUnique = false;
+	// 		break;
+	// 	}
+	// 	if (questionUnique == true) {
+	// 		questionHistory.push(questionNum);
+	// 		console.log(questionHistory);  // Why is this not working?
+	// 		questionCounter++;
+	// 	}
+	// }
 	questionCounter++;
+	// console.log(questionCounter);
 
 	// Display question and answer list
 	$("#question-number").html("Question #" + (questionCounter) + " of 10");
@@ -223,8 +233,8 @@ function newQuestion() {
 function runCountdown() {
 	secondsLeft = 15;
 	$("#time-remaining").html("Time Remaining: " + secondsLeft);
-	$("#time-remaining").css("background-color","green");
-	$("#time-remaining").css("color","black");
+	$("#time-remaining").css("background-color", "green");
+	$("#time-remaining").css("color", "black");
 	clearInterval(intervalId);
 	clearTimeout(tenSeconds); clearTimeout(fiveSeconds); clearTimeout(fourSeconds); clearTimeout(threeSeconds); clearTimeout(twoSeconds); clearTimeout(oneSecond);
 	intervalId = setInterval(decrement, 1000);
@@ -249,29 +259,29 @@ function decrement() {
 }
 
 // Timeout for the countdown clock with visual color display
-function tenSeconds(){
-	$("#time-remaining").css("background-color","yellow");
-	$("#time-remaining").css("color","black");
+function tenSeconds() {
+	$("#time-remaining").css("background-color", "yellow");
+	$("#time-remaining").css("color", "black");
 }
-function fiveSeconds(){
-	$("#time-remaining").css("background-color","red");
-	$("#time-remaining").css("color","yellow");
+function fiveSeconds() {
+	$("#time-remaining").css("background-color", "red");
+	$("#time-remaining").css("color", "yellow");
 }
-function fourSeconds(){
-	$("#time-remaining").css("background-color","black");
-	$("#time-remaining").css("color","yellow");
+function fourSeconds() {
+	$("#time-remaining").css("background-color", "black");
+	$("#time-remaining").css("color", "yellow");
 }
-function threeSeconds(){
-	$("#time-remaining").css("background-color","red");
-	$("#time-remaining").css("color","yellow");
+function threeSeconds() {
+	$("#time-remaining").css("background-color", "red");
+	$("#time-remaining").css("color", "yellow");
 }
-function twoSeconds(){
-	$("#time-remaining").css("background-color","black");
-	$("#time-remaining").css("color","yellow");
+function twoSeconds() {
+	$("#time-remaining").css("background-color", "black");
+	$("#time-remaining").css("color", "yellow");
 }
-function oneSecond(){
-	$("#time-remaining").css("background-color","red");
-	$("#time-remaining").css("color","yellow");
+function oneSecond() {
+	$("#time-remaining").css("background-color", "red");
+	$("#time-remaining").css("color", "yellow");
 }
 
 // Display answer page and process conditional logic to determine answer
@@ -280,15 +290,15 @@ function answerPage() {
 	$("#current-question").empty();
 	$(".newDivChoice").empty();
 	$("#time-remaining").empty();
-	$("#time-remaining").css("background-color","green");
-	$("#time-remaining").css("color","black");
+	$("#time-remaining").css("background-color", "green");
+	$("#time-remaining").css("color", "black");
 	clearInterval(intervalId);
 	clearTimeout(tenSeconds); clearTimeout(fiveSeconds); clearTimeout(fourSeconds); clearTimeout(threeSeconds); clearTimeout(twoSeconds); clearTimeout(oneSecond);
 	// Retrieve correct triviaQuestions.answer index and display answer and gif
 	var correctAnswerIndex = triviaQuestions[questionNum].answer;
 	var correctAnswerText = triviaQuestions[questionNum].answerList[correctAnswerIndex];
 	// $("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"' width='20%'>");
-	$("#answer-gif").html("<img src = 'assets/images/answers/"+ triviaQuestions[questionNum].answerGif +"'>");
+	$("#answer-gif").html("<img src = 'assets/images/answers/" + triviaQuestions[questionNum].answerGif + "'>");
 	$("#answer-gif").css("width", "10%");
 
 	// Increase correct/incorrect/or unanswered count and display message-quote as appropriate
@@ -350,7 +360,7 @@ function scoreboard() {
 $("#start-btn").hide();
 $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
-setTimeout(videoplayed, 1000 * 37);
+setTimeout(videoplayed, 1000 * 37); // change to 37s
 
 $("#start-btn").click(function () {
 	$(this).hide();
@@ -362,4 +372,6 @@ $("#start-btn").click(function () {
 $("#start-over-btn").click(function () {
 	$(this).hide();
 	initiateGame();
+	audioMusic.pause();
+	audioMusic.currentTime=0; // audioMusic.currentTime(0);is this correct to reset music i.e. stop, instead of pause?
 });
