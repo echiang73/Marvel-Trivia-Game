@@ -127,7 +127,7 @@ var triviaQuestions = [{
 }];
 
 var questionNum;
-var questionHistory = [];
+var questionHistory = [""];
 var questionUnique
 var questionCounter;
 var correctCounter;
@@ -195,66 +195,27 @@ function newQuestion() {
 	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
 	// questionUnique = true;
 	// questionNum = Math.floor(Math.random() * triviaQuestions.length);
-	// console.log(questionNum);
-
-	// Aaron Kim code:
-	// if(!questionHistory[0]){
-	// 	questionHistory.push(questionNum)
-	//   }
-   
-	//   if (!questionHistory.includes(questionNum)) {
-	// 	  questionHistory.push(questionNum);
-	// 	  questionCounter++;
-	//   }
-	// End Aaron Kim code:
-	
-	// for (var i = 0; i < questionHistory.length; i++) {
-	// 	if (questionNum == questionHistory[i]) {
-	// 		newQuestion();
-	// 		questionUnique = false;
-	// 		break;
-	// 	}
-	// 	else if (questionUnique == true) {
-	// 		questionHistory.push(questionNum);
-	// 		console.log(questionHistory);  // Why is this not working?
-	// 		questionCounter++;
-	// 	}
-	// }
-
-	// var a = ["Roger", "Russell", "Clyde", "Egbert", "Clare", "Bobbie", "Simon", "Elizabeth", "Ted", "Caroline"]; // var triviaQuestions
-	// var b = []; // var questionHistory
-
-	// var chooseName = function () {
-		var questionUnique = true; // questionUnique
-		questionHistory.length = 10; // questionHistory.length need this???
-		questionNum = Math.floor(Math.random() * triviaQuestions.length); //questionNum which is a number and triviaQuestions.length
-		// name = a[num]; // don't use
-		console.log(questionNum);
-		for (i = 0; i < triviaQuestions.length; i++) { // triviaQuestions.length
-			if (questionNum[i] == questionHistory) { // questionNum[i] == questionHistory
-				newQuestion();
-				unique = false;
-				console.log(questionNum + " is not unique!");  // added this to the code
-				break;
-			}
-		}
-		if (questionUnique == true) {
-			// alert(name); // don't use
-			// b.unshift(name);
-			questionCounter++;
-			console.log(questionNum + " is unique!");
-		}
-	
-
-
-
-
-
-
-
-
 	// questionCounter++;
+	// console.log(questionNum);
 	// console.log(questionCounter);
+
+	var questionUnique = true;
+	questionNum = Math.floor(Math.random() * triviaQuestions.length);
+	console.log(questionNum);
+	for (i = 0; i < triviaQuestions.length; i++) {
+		if (questionNum == questionHistory[i]) {
+			console.log("not unique!");
+			newQuestion();
+			questionUnique = false;
+			break;
+		}
+	}
+	if (questionUnique == true) {
+		questionHistory.push(questionNum);
+		questionCounter++;
+		console.log(questionNum + " is unique!");
+	}
+	console.log(questionHistory);
 
 	// Display question and answer list
 	$("#question-number").html("Question #" + (questionCounter) + " of 10");
@@ -367,7 +328,7 @@ function answerPage() {
 		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
 	}
 	// Pause for the person to read the answer and determine if next new question or game over
-	if (questionCounter === 10) { // default limit to just 10 questions, otherwise use below line of code for entire array of questions
+	if (questionCounter === 9) { // default limit to just 10 questions, otherwise use below line of code for entire array of questions. set to 9 if " " counts as 1
 		// if(questionNum === (triviaQuestions.length-1)){
 		setTimeout(scoreboard, 1000 * 5);
 	}
@@ -405,7 +366,7 @@ function scoreboard() {
 // $("#start-btn").hide();
 $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
-setTimeout(videoplayed, 1000 * 34);
+setTimeout(videoplayed, 1000 * 1); //set to 34
 
 
 $("#start-btn").click(function () {
@@ -426,5 +387,5 @@ $("#start-over-btn").click(function () {
 	$(this).hide();
 	initiateGame();
 	audioMusic.pause();
-	audioMusic.currentTime=0; // audioMusic.currentTime(0);is this correct to reset music i.e. stop, instead of pause?
+	audioMusic.currentTime = 0; // audioMusic.currentTime(0);is this correct to reset music i.e. stop, instead of pause?
 });
