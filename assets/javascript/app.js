@@ -365,7 +365,6 @@ $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
 setTimeout(videoplayed, 1000 * 34);
 
-
 $("#start-btn").click(function () {
 	$(this).hide();
 	$("video").remove();
