@@ -26,19 +26,18 @@
     </div>
     <h2 id="title-heading">Trivia Game</h2>
 
-    <video controls autoplay width="60%"> <!-- why is it not autoplaying?-->
-        <source src="assets/video/MarvelTheme.mp4#t=2" type="video/mp4"> <!--put autoplay here?-->
-        <div style="border: 1px solid black ; padding: 8px ;">
-            Sorry, your browser does not support the &lt;video&gt; tag used.
-        </div>
-    </video>
-
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/UhVjp48U2Oc" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-
     <div class="container">
-        <button class='btn btn-success' id="start-btn">Start</button><br />
+        <button class='btn btn-success' id="start-btn">Start Game</button><br />
         <img src="assets/images/marvelstudios.gif" id="ironmanLogo" ;>
+        <!-- <button class='btn btn-info' id="skip-video-btn">Skip Video</button><br /> -->
+        <video controls autoplay muted width="60%">
+            <source src="assets/video/MarvelTheme.mp4#t=2" type="video/mp4">
+            <div style="border: 1px solid black ; padding: 8px ;">
+                Sorry, your browser does not support the &lt;video&gt; tag used.
+            </div>
+        </video>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/UhVjp48U2Oc" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         <!--Timer-->
         <div id="time-remaining"></div>
         <div class="main-display">

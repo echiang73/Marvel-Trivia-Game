@@ -149,6 +149,7 @@ var finishedQuote = [
 ];
 
 // Variable for timeouts
+var videoTime;
 var tenSeconds;
 var fiveSeconds;
 var fourSeconds;
@@ -192,9 +193,20 @@ function newQuestion() {
 	$("#answer-gif").empty();
 	answered = true;
 	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
-	questionUnique = true;
-	questionNum = Math.floor(Math.random() * triviaQuestions.length);
-	console.log(questionNum);
+	// questionUnique = true;
+	// questionNum = Math.floor(Math.random() * triviaQuestions.length);
+	// console.log(questionNum);
+
+	// Aaron Kim code:
+	// if(!questionHistory[0]){
+	// 	questionHistory.push(questionNum)
+	//   }
+   
+	//   if (!questionHistory.includes(questionNum)) {
+	// 	  questionHistory.push(questionNum);
+	// 	  questionCounter++;
+	//   }
+	// End Aaron Kim code:
 	
 	// for (var i = 0; i < questionHistory.length; i++) {
 	// 	if (questionNum == questionHistory[i]) {
@@ -202,13 +214,46 @@ function newQuestion() {
 	// 		questionUnique = false;
 	// 		break;
 	// 	}
-	// 	if (questionUnique == true) {
+	// 	else if (questionUnique == true) {
 	// 		questionHistory.push(questionNum);
 	// 		console.log(questionHistory);  // Why is this not working?
 	// 		questionCounter++;
 	// 	}
 	// }
-	questionCounter++;
+
+	// var a = ["Roger", "Russell", "Clyde", "Egbert", "Clare", "Bobbie", "Simon", "Elizabeth", "Ted", "Caroline"]; // var triviaQuestions
+	// var b = []; // var questionHistory
+
+	// var chooseName = function () {
+		var questionUnique = true; // questionUnique
+		questionHistory.length = 10; // questionHistory.length need this???
+		questionNum = Math.floor(Math.random() * triviaQuestions.length); //questionNum which is a number and triviaQuestions.length
+		// name = a[num]; // don't use
+		console.log(questionNum);
+		for (i = 0; i < triviaQuestions.length; i++) { // triviaQuestions.length
+			if (questionNum[i] == questionHistory) { // questionNum[i] == questionHistory
+				newQuestion();
+				unique = false;
+				console.log(questionNum + " is not unique!");  // added this to the code
+				break;
+			}
+		}
+		if (questionUnique == true) {
+			// alert(name); // don't use
+			// b.unshift(name);
+			questionCounter++;
+			console.log(questionNum + " is unique!");
+		}
+	
+
+
+
+
+
+
+
+
+	// questionCounter++;
 	// console.log(questionCounter);
 
 	// Display question and answer list
@@ -325,7 +370,6 @@ function answerPage() {
 	if (questionCounter === 10) { // default limit to just 10 questions, otherwise use below line of code for entire array of questions
 		// if(questionNum === (triviaQuestions.length-1)){
 		setTimeout(scoreboard, 1000 * 5);
-		audioScoreboard.play();
 	}
 	else {
 		questionNum++;
@@ -339,6 +383,7 @@ function scoreboard() {
 	$("#message-quote").empty();
 	$("#correct-answer").empty();
 	$("#answer-gif").empty();
+	audioScoreboard.play();
 	audioMusic.play();
 	if (correctCounter < 3) {
 		$("#finished-quote").html(finishedQuote[0]);
@@ -357,17 +402,25 @@ function scoreboard() {
 }
 
 // Main process
-$("#start-btn").hide();
+// $("#start-btn").hide();
 $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
-setTimeout(videoplayed, 1000 * 37); // change to 37s
+setTimeout(videoplayed, 1000 * 34);
+
 
 $("#start-btn").click(function () {
 	$(this).hide();
+	$("video").remove();
 	$("#title-heading").hide();
 	$("#ironmanLogo").hide();
 	initiateGame();
 });
+
+// $("#skip-video-btn").click(function () {
+// 	$(this).hide();
+// 	videoplayed();
+// 	clearTimeout(videoplayed);
+// });
 
 $("#start-over-btn").click(function () {
 	$(this).hide();
