@@ -192,19 +192,18 @@ function newQuestion() {
 	$("#correct-answer").empty();
 	$("#answer-gif").empty();
 	answered = true;
-	// Randomly pick a questionNum from 1-25 from triviaQuestions array.
-	// questionUnique = true;
+
+	// Non-UNIQUE Pick: Randomly pick a questionNum from 1-25 from triviaQuestions array.
 	// questionNum = Math.floor(Math.random() * triviaQuestions.length);
 	// questionCounter++;
-	// console.log(questionNum);
-	// console.log(questionCounter);
 
+	// UNIQUE: Randomly pick UNIQUE questionNum from 1-25 from triviaQuetions array.
 	var questionUnique = true;
 	questionNum = Math.floor(Math.random() * triviaQuestions.length);
 	console.log(questionNum);
-	for (i = 0; i < triviaQuestions.length; i++) {
+	for (var i = 0; i < triviaQuestions.length; i++) {
 		if (questionNum == questionHistory[i]) {
-			console.log("not unique!");
+			console.log(questionNum + " is not unique!");
 			newQuestion();
 			questionUnique = false;
 			break;
@@ -214,26 +213,26 @@ function newQuestion() {
 		questionHistory.push(questionNum);
 		questionCounter++;
 		console.log(questionNum + " is unique!");
-	}
-	console.log(questionHistory);
+		console.log(questionHistory);
 
-	// Display question and answer list
-	$("#question-number").html("Question #" + (questionCounter) + " of 10");
-	$("#current-question").html(triviaQuestions[questionNum].question);
-	for (var i = 0; i < 4; i++) {
-		var answerChoice = $("<div>");
-		answerChoice.text(triviaQuestions[questionNum].answerList[i]);
-		answerChoice.attr({ "data-index": i });
-		answerChoice.addClass("newDivChoice");
-		$(".answer-choice").append(answerChoice);
+		// Display question and answer list
+		$("#question-number").html("Question #" + (questionCounter) + " of 10");
+		$("#current-question").html(triviaQuestions[questionNum].question);
+		for (var i = 0; i < 4; i++) {
+			var answerChoice = $("<div>");
+			answerChoice.text(triviaQuestions[questionNum].answerList[i]);
+			answerChoice.attr({ "data-index": i });
+			answerChoice.addClass("newDivChoice");
+			$(".answer-choice").append(answerChoice);
+		}
+		runCountdown();
+		$(".newDivChoice").click(function () {
+			userSelect = $(this).data("index");
+			clearInterval(intervalId);
+			clearTimeout(tenSeconds); clearTimeout(fiveSeconds); clearTimeout(fourSeconds); clearTimeout(threeSeconds); clearTimeout(twoSeconds); clearTimeout(oneSecond);
+			answerPage();
+		});
 	}
-	runCountdown();
-	$(".newDivChoice").click(function () {
-		userSelect = $(this).data("index");
-		clearInterval(intervalId);
-		clearTimeout(tenSeconds); clearTimeout(fiveSeconds); clearTimeout(fourSeconds); clearTimeout(threeSeconds); clearTimeout(twoSeconds); clearTimeout(oneSecond);
-		answerPage();
-	});
 }
 
 function runCountdown() {
@@ -328,7 +327,7 @@ function answerPage() {
 		$("#correct-answer").html("The correct answer is: " + correctAnswerText);
 	}
 	// Pause for the person to read the answer and determine if next new question or game over
-	if (questionCounter === 9) { // default limit to just 10 questions, otherwise use below line of code for entire array of questions. set to 9 if " " counts as 1
+	if (questionCounter === 10) { // default limit to just 10 questions, otherwise use below line of code for entire array of questions.
 		// if(questionNum === (triviaQuestions.length-1)){
 		setTimeout(scoreboard, 1000 * 5);
 	}
@@ -359,11 +358,9 @@ function scoreboard() {
 	$("#incorrect-count").html("Incorrect Answers: " + incorrectCounter);
 	$("#unanswered-count").html("Unanswered: " + unansweredCounter);
 	$("#start-over-btn").show();
-
 }
 
 // Main process
-// $("#start-btn").hide();
 $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
 setTimeout(videoplayed, 1000 * 1); //set to 34
@@ -377,15 +374,10 @@ $("#start-btn").click(function () {
 	initiateGame();
 });
 
-// $("#skip-video-btn").click(function () {
-// 	$(this).hide();
-// 	videoplayed();
-// 	clearTimeout(videoplayed);
-// });
-
 $("#start-over-btn").click(function () {
 	$(this).hide();
+	questionHistory = [""];
 	initiateGame();
 	audioMusic.pause();
-	audioMusic.currentTime = 0; // audioMusic.currentTime(0);is this correct to reset music i.e. stop, instead of pause?
+	audioMusic.currentTime = 0;
 });
