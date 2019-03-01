@@ -363,7 +363,7 @@ function scoreboard() {
 // Main process
 $("#ironmanLogo").hide();
 $("#start-over-btn").hide();
-setTimeout(videoplayed, 1000 * 1); //set to 34
+setTimeout(videoplayed, 1000 * 34);
 
 
 $("#start-btn").click(function () {
