@@ -9,7 +9,7 @@ Instructions:
 * Make sure you turn up your volume to enjoy the full video and sound effect.
 
 Click on the link to play!
-https://echiang73.github.io/TriviaGame/
+https://echiang73.github.io/Marvel-Trivia-Game/
 
 ## Built with
 * HTML5
